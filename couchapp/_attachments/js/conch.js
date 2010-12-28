@@ -5,6 +5,8 @@
   // No jQuery.couch yet.
   //$.couch.urlPrefix = root + '/db';
 
+  var req = $.request.couch;
+
   var initial = $('#main').html();
   var main = $.sammy('#main', function() {
     this.use(Sammy.Session);
@@ -18,7 +20,7 @@
     // Routes
     this.get('#/', function(ctx) {
       main.swap('Conch loaded. Entering room...');
-      $.request.couch({uri:'ddoc/state.json'}, function(er, resp, body) {
+      req({uri:'ddoc/state.json'}, function(er, resp, body) {
         if(er) throw er;
         main.swap('Connected: ' + JSON.stringify(body));
       })
