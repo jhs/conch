@@ -1,0 +1,57 @@
+body {
+  background-color: #ccc;
+}
+
+#doc {
+  background-color: white;
+}
+
+#doc #ft {
+  margin-top: 0.2em;
+}
+
+/* For possible sidebar override later */
+#doc > #bd > .yui-b.reduced {
+  /* Sidebar */
+  width: 6.923em; /* 90 px */
+}
+
+#doc > #bd > #yui-main > .yui-b.reduced {
+  /* Main panel */
+  margin-left: 7.923em; /* 90px + 1em */
+  border-left: 2px dashed #ccc;
+  padding-left: 0.5em;
+}
+
+#main strong {
+  font-weight: bold;
+}
+
+#main h1 {
+  font-weight: bold;
+  font-size: 150%;
+  margin-bottom: 0.25em;
+}
+
+#main h2 {
+  margin-top: 0.5em;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  font-size: 125%;
+}
+
+#main h2.first {
+  margin-top: 0;
+}
+
+#main dl.person {
+  margin-top: 1em;
+}
+
+#main dl.person dt {
+  float: left;
+  clear: left;
+  width: 8em;
+  margin-right: 1em;
+  font-weight: bold;
+}
