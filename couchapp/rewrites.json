@@ -1,0 +1,16 @@
+[ { "for" : "Database API access"
+  , "from": "db/*"
+  , "to"  : "../../*"
+  }
+
+, { "for" : "Access to things inside the ddoc"
+  , "from": "ddoc/*"
+  , "to"  : "*"
+  }
+
+, { "for" : "Everything else is assumed to be a room name"
+  , "from": "*"
+  , "to"  : "index.html"
+  }
+
+]
