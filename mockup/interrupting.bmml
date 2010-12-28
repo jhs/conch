@@ -6,7 +6,7 @@
         <verticalScrollbar>false</verticalScrollbar>
       </controlProperties>
     </control>
-    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="451" y="302" w="-1" h="-1" measuredW="225" measuredH="223" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="441" y="302" w="-1" h="-1" measuredW="251" measuredH="223" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <alternateRowColor>15594478</alternateRowColor>
         <bold>false</bold>
@@ -15,49 +15,41 @@
         <hLines>false</hLines>
         <selectedIndex>-1</selectedIndex>
         <size>20</size>
-        <text>%7Bcolor%3A008800%7DJan%7Bcolor%7D%2C%20*%7Bcolor%3A008800%7DConch%7Bcolor%7D*%0AClaire%0A%7Bcolor%3A880000%7DChris%7Bcolor%7D%2C%20*%7Bcolor%3A880000%7DInterrupt%7Bcolor%7D*%0ABenjamin%0A%7Bcolor%3A000088%7DAnna%7Bcolor%7D%2C%20*%7Bcolor%3A000088%7DHand%20up%7Bcolor%7D*%0ADamien%0A%7Bcolor%3A880000%7DJason%20%28me%29%7Bcolor%7D%2C%20*%7Bcolor%3A880000%7DInterrupt%7Bcolor%7D*</text>
+        <text>%7Bcolor%3A008800%7DJan%7Bcolor%7D%2C%20*%7Bcolor%3A008800%7DConch%7Bcolor%7D*%0AClaire%0A%7Bcolor%3A880000%7DChris%7Bcolor%7D%2C%20*%7Bcolor%3A880000%7DInterrupt%7Bcolor%7D*%0ABenjamin%0A%7Bcolor%3A000088%7DAnna%7Bcolor%7D%2C%20*%7Bcolor%3A000088%7DHand%20up%7Bcolor%7D*%0ADamien%0A%7Bcolor%3A880000%7DJason%20%28me%29%7Bcolor%7D%2C%20*%7Bcolor%3A880000%7DInterrupting%7Bcolor%7D*</text>
         <underline>false</underline>
         <verticalScrollbar>false</verticalScrollbar>
         <vLines>true</vLines>
       </controlProperties>
     </control>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="389" y="122" w="-1" h="-1" measuredW="355" measuredH="51" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="331" y="122" w="-1" h="-1" measuredW="472" measuredH="51" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
-        <text>Focus%3A%20Jan%20is%20speaking</text>
+        <text>Focus%3A%20I%20am%20interrupting%20Jan.</text>
       </controlProperties>
     </control>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="579" y="221" w="229" h="66" measuredW="211" measuredH="42" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="579" y="221" w="229" h="66" measuredW="175" measuredH="42" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15374745</color>
         <href>landing%26bm%3Blanding.bmml%26bm%3Blanding.bmml%26bm%3Blanding.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22411%2C178%2C640%2C244%22%20href%3D%22landing.bmml%22%20alt%3D%22landing%22%20id%3D%2232%22/%3E</map>
         <size>24</size>
-        <text>Cancel%20interrupt</text>
+        <text>Done%2C%20thanks</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="449" y="173" w="-1" h="-1" measuredW="236" measuredH="40" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="463" y="173" w="-1" h="-1" measuredW="207" measuredH="40" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <color>10027008</color>
         <size>24</size>
-        <text>I%20need%20to%20interrupt%21</text>
+        <text>Time%3A%2023%20seconds</text>
       </controlProperties>
     </control>
     <control controlID="40" controlTypeID="com.balsamiq.mockups::Button" x="325" y="221" w="229" h="66" measuredW="192" measuredH="42" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <color>10470904</color>
-        <href>raised%26bm%3Braised.bmml%26bm%3Braised.bmml%26bm%3Braised.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22157%2C178%2C386%2C244%22%20href%3D%22raised.bmml%22%20alt%3D%22raised%22%20id%3D%2240%22/%3E</map>
         <size>24</size>
+        <state>disabled</state>
         <text>Raise%20my%20hand</text>
-      </controlProperties>
-    </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="179" y="926" w="-1" h="-1" measuredW="146" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>2848996</color>
-        <href>interrupting%26bm%3Binterrupting.bmml%26bm%3Binterrupting.bmml%26bm%3Binterrupting.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2211%2C883%2C157%2C908%22%20href%3D%22interrupting.bmml%22%20alt%3D%22interrupting%22%20id%3D%2241%22/%3E</map>
-        <text>Jan%20grants%20%28not%20in%20UI%29</text>
       </controlProperties>
     </control>
   </controls>
