@@ -21,10 +21,10 @@
         <vLines>true</vLines>
       </controlProperties>
     </control>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="389" y="122" w="-1" h="-1" measuredW="355" measuredH="51" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="358" y="122" w="-1" h="-1" measuredW="417" measuredH="51" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
-        <text>Focus%3A%20Jan%20is%20speaking</text>
+        <text>Focus%3A%20Jan%20has%20the%20conch.</text>
       </controlProperties>
     </control>
     <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="579" y="221" w="229" h="66" measuredW="211" measuredH="42" zOrder="3" locked="false" isInGroup="-1">
