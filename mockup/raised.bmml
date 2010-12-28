@@ -1,0 +1,66 @@
+<mockup version="1.0" skin="sketch" measuredW="967" measuredH="987" mockupW="799" mockupH="944">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="168" y="43" w="799" h="944" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Conch%0Ahttp%3A//conch.couch.io/focus</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="451" y="302" w="-1" h="-1" measuredW="225" measuredH="223" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <alternateRowColor>15594478</alternateRowColor>
+        <bold>false</bold>
+        <borderStyle>none</borderStyle>
+        <hasHeader>false</hasHeader>
+        <hLines>false</hLines>
+        <selectedIndex>-1</selectedIndex>
+        <size>20</size>
+        <text>%7Bcolor%3A008800%7DJan%7Bcolor%7D%2C%20*%7Bcolor%3A008800%7DConch%7Bcolor%7D*%0AClaire%0A%7Bcolor%3A880000%7DChris%7Bcolor%7D%2C%20*%7Bcolor%3A880000%7DInterrupt%7Bcolor%7D*%0ABenjamin%0A%7Bcolor%3A000088%7DAnna%7Bcolor%7D%2C%20*%7Bcolor%3A000088%7DHand%20up%7Bcolor%7D*%0ADamien%0A%7Bcolor%3A000088%7DJason%20%28me%29%7Bcolor%7D%2C%20*%7Bcolor%3A000088%7DHand%20up%7Bcolor%7D*</text>
+        <underline>false</underline>
+        <verticalScrollbar>false</verticalScrollbar>
+        <vLines>true</vLines>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="389" y="122" w="-1" h="-1" measuredW="355" measuredH="51" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>32</size>
+        <text>Focus%3A%20Jan%20is%20speaking</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Button" x="325" y="221" w="229" h="66" measuredW="196" measuredH="42" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10470904</color>
+        <href>landing%26bm%3Blanding.bmml%26bm%3Blanding.bmml%26bm%3Blanding.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22157%2C178%2C386%2C244%22%20href%3D%22landing.bmml%22%20alt%3D%22landing%22%20id%3D%2231%22/%3E</map>
+        <size>24</size>
+        <text>Lower%20my%20hand</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="579" y="221" w="229" h="66" measuredW="229" measuredH="42" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15374745</color>
+        <size>24</size>
+        <text>Request%20interrupt</text>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="479" y="173" w="-1" h="-1" measuredW="176" measuredH="40" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>472931</color>
+        <size>24</size>
+        <text>My%20hand%20is%20up%21</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::CallOut" x="183" y="243" w="126" h="100" measuredW="395" measuredH="40" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Second%20header%20indicates%20what%20I%20am%20doing%20as%20a%20participant</text>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Arrow" x="232" y="192" w="219" h="51" measuredW="150" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>bottom</direction>
+        <leftArrow>false</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
