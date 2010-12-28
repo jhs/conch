@@ -1,0 +1,10 @@
+{ "_id": "someroom"
+, "members": { "Jan": {"state": "conch"}
+             , "Claire": {}
+             , "Chris": {"state":"interrupt"}
+             , "Benjamin": {}
+             , "Anna": {"state":"hand-up"}
+             , "Damien": {}
+             , "Jason": {}
+             }
+}
