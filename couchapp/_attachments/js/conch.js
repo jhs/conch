@@ -1,4 +1,7 @@
-(function($) {
+// Main Conch application
+//
+
+define(['./sammy', 'jquery', './jquery.request'], function() {
   var ddoc = '/conch/_design/conch';
   var root = '/conch/_design/conch/_rewrite';
 
@@ -29,4 +32,4 @@
 
   // Start when DOM is ready.
   $(function() { main.run('#/') });
-})(jQuery);
+})
