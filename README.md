@@ -51,6 +51,15 @@ Features go here. For bugs, see the issue tracker.
 * Cancel IRQ
 * Big button to yield to interrupt
 * Some way to yield (assign) interrupt to anybody
+* Vertical list of participants. Conch is always at the top. When Conch yields,
+  two options are possible:
+
+  * Round table mode: Old conch goes to the bottom, new conch goes to top, and
+    everybody else moves up 1. The person who spoke longest ago is nearest the
+    top, reminding them to participate.
+  * Fish bowl mode: Old conch moves down 1, new conch goes to top. Those who
+    don't speak much sink to the bottom permanently.
+
 * Auto-assign goofy names by default
 * Change my name
 * Password-protect session
