@@ -39,6 +39,8 @@
     <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="579" y="221" w="229" h="66" measuredW="229" measuredH="42" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15374745</color>
+        <href>irq%26bm%3Birq.bmml%26bm%3Birq.bmml%26bm%3Birq.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22411%2C178%2C640%2C244%22%20href%3D%22irq.bmml%22%20alt%3D%22irq%22%20id%3D%2232%22/%3E</map>
         <size>24</size>
         <text>Request%20interrupt</text>
       </controlProperties>
