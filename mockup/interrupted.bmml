@@ -1,0 +1,98 @@
+<mockup version="1.0" skin="sketch" measuredW="967" measuredH="987" mockupW="799" mockupH="944">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="168" y="43" w="799" h="944" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Conch%0Ahttp%3A//conch.couch.io/focus</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="441" y="302" w="-1" h="-1" measuredW="251" measuredH="223" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <alternateRowColor>15594478</alternateRowColor>
+        <bold>false</bold>
+        <borderStyle>none</borderStyle>
+        <hasHeader>false</hasHeader>
+        <hLines>false</hLines>
+        <selectedIndex>-1</selectedIndex>
+        <size>20</size>
+        <text>%7Bcolor%3A008800%7DJason%20%28me%29%7Bcolor%7D%2C%20*%7Bcolor%3A008800%7DConch%7Bcolor%7D*%0AClaire%0A%7Bcolor%3A000088%7DJan%7Bcolor%7D%2C%20*%7Bcolor%3A000088%7DHand%20up%7Bcolor%7D*%0A%7Bcolor%3A880000%7DChris%7Bcolor%7D%2C%20*%7Bcolor%3A880000%7DInterrupting%7Bcolor%7D*%0ABenjamin%0AAnna%0ADamien</text>
+        <underline>false</underline>
+        <verticalScrollbar>false</verticalScrollbar>
+        <vLines>true</vLines>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="317" y="122" w="-1" h="-1" measuredW="500" measuredH="51" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>32</size>
+        <text>Focus%3A%20Chris%20is%20interrupting%20me.</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Button" x="588" y="221" w="229" h="66" measuredW="167" measuredH="42" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10470904</color>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22157%2C178%2C386%2C244%22%20href%3D%22raised.bmml%22%20alt%3D%22raised%22%20id%3D%2231%22/%3E</map>
+        <size>24</size>
+        <state>disabled</state>
+        <text>Yield%20to%20Jan</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Button" x="317" y="221" w="244" h="66" measuredW="234" measuredH="42" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15374745</color>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22411%2C178%2C640%2C244%22%20href%3D%22irq.bmml%22%20alt%3D%22irq%22%20id%3D%2232%22/%3E</map>
+        <size>24</size>
+        <state>up</state>
+        <text>%205-second%20warning</text>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="463" y="173" w="-1" h="-1" measuredW="208" measuredH="40" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>6710886</color>
+        <size>24</size>
+        <text>Time%3A%2011%20seconds</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="__group__" x="826" y="280" w="134" h="191" measuredW="134" measuredH="191" zOrder="6" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::CallOut" x="8" y="59" w="126" h="132" measuredW="381" measuredH="45" zOrder="0" locked="false" isInGroup="47">
+          <controlProperties>
+            <text>Yield%20is%20disabled%20since%20the%20interrupt%20must%20complete%20first</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Arrow" x="0" y="0" w="26" h="59" measuredW="150" measuredH="100" zOrder="1" locked="false" isInGroup="47">
+          <controlProperties>
+            <direction>top</direction>
+            <leftArrow>true</leftArrow>
+            <rightArrow>false</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="51" controlTypeID="__group__" x="183" y="271" w="126" h="358" measuredW="126" measuredH="358" zOrder="7" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::CallOut" x="0" y="60" w="126" h="298" measuredW="1000" measuredH="40" zOrder="0" locked="false" isInGroup="51">
+          <controlProperties>
+            <text>I%20guess%20the%20interrupt%20button%20completely%20disappears%20until%20Chris%20yields%20back.%20Maybe%20the%20advanced%20view%20lets%20me%20yank%20it%20back%20or%20give%20him%20a%205-second%20warning</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Arrow" x="99" y="0" w="26" h="59" measuredW="150" measuredH="100" zOrder="1" locked="false" isInGroup="51">
+          <controlProperties>
+            <direction>bottom</direction>
+            <leftArrow>false</leftArrow>
+            <rightArrow>true</rightArrow>
+            <text/>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="179" y="926" w="-1" h="-1" measuredW="152" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>2848996</color>
+        <href>conch%26bm%3Bconch.bmml%26bm%3Bconch.bmml%26bm%3Bconch.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2211%2C883%2C163%2C908%22%20href%3D%22conch.bmml%22%20alt%3D%22conch%22%20id%3D%2252%22/%3E</map>
+        <text>Chris%20yields%20%28not%20in%20UI%29</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
