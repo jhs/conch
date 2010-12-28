@@ -28,6 +28,24 @@ speaking&rdquo;
 &ldquo;And he won&rsquo;t be interrupted: Except by me.&rdquo;
 </blockquote>
 
+## Software Design
+
+Conch aims to demonstrate a modern (early 2011) CouchApp using
+CouchDB. Conch has the following nice features.
+
+* Pretty URLs (**CouchDB rewrites**) with support for **vhost** (e.g.
+  `www.example.com/conch`) or standard URLs (e.g.
+  `/conch/_design/conch/rewrite`)
+* Sophisticated browser application development environment using proven tools
+  and architectures (**SammyJS**)
+* Convenient development using many `.js` files; but in production
+  all Javascript is combined into one static file for minimal round-trips from
+  the browser. (**RequireJS**)
+* Automatic UI render and update direct from raw Couch results using
+  Model-View-ViewModel pattern (**KnockoutJS**). In fact, since the fundamental
+  data in the database *directly* becomes the UI, I would call it
+  "Model-ViewModel" or even "Couch ViewModel".
+
 ## To Do
 
 Features go here. For bugs, see the issue tracker.
@@ -81,3 +99,5 @@ Features go here. For bugs, see the issue tracker.
   * Hand-up time per person
   * IRQ time per person
   * Best/worst speaker based on time to yield to IRQ
+
+vim: tw=80
