@@ -17,7 +17,11 @@
 
     // Routes
     this.get('#/', function(ctx) {
-      main.swap('Looks like Sammy is wired up.');
+      main.swap('Conch loaded. Entering room...');
+      $.req_couch({uri:'ddoc/state.json'}, function(er, resp, body) {
+        if(er) throw er;
+        main.swap('Connected: ' + JSON.stringify(body));
+      })
     })
   })
 
