@@ -1,4 +1,4 @@
-define(['knockout', 'vendor/mustache/requirejs.mustache'], function(ko, Mustache) {
+define(['knockout', 'vendor/mustache/requirejs.mustache', 'jquery', 'js/jquery.request'], function(ko, Mustache, jQuery) {
 
 ko.mustacheTemplateEngine = function () {
 
@@ -28,7 +28,7 @@ ko.mustacheTemplateEngine = function () {
     console.log('Final HTML: %o', html);
 
     // The caller needs an array of actual DOM nodes.
-    return jQuery('<div>' + html + '</div>'); // XXX This should not depend on jQuery.
+    return jQuery('<div>' + html + '</div>');
   },
 
   this['isTemplateRewritten'] = function (template) {
