@@ -30,6 +30,17 @@ define(['./sammy', 'jquery', './jquery.request'], function() {
     })
   })
 
-  // Start when DOM is ready.
-  $(function() { main.run('#/') });
+  var started = false;
+  var start = function() {
+    if(started)
+      throw new Error("Already started");
+    started = true;
+
+    // Seems like wrapping in ready() doesn't hurt anything.
+    $(document).ready(function() {
+      main.run('#/');
+    })
+  }
+
+  return { "start":start };
 })

@@ -12,4 +12,9 @@ require( // Options
 
          // Modules
        , [ 'js/conch' ]
+
+         // Code to run when ready.
+       , function(conch) {
+           conch.start();
+         }
        );
