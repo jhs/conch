@@ -13,7 +13,6 @@ define(['jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTempla
   var initial = $('#main').html();
   var main = $.sammy('#main', function() {
     this.use(Sammy.Session);
-    this.use(Sammy.Mustache, "html");
 
     this.swap = function(content) {
       this.$element().hide().html(content).fadeIn('slow');
