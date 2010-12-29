@@ -7,6 +7,7 @@ require( // Options
                     , couchdb: "/_utils/script"
                     , jquery : "js/require_jquery"
                     , sammy  : "js/require_sammy"
+                    , knockout: "js/require_knockout"
                     }
          }
 

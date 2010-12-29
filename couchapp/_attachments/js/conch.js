@@ -1,7 +1,7 @@
 // Main Conch application
 //
 
-define(['jquery', 'sammy', './jquery.request'], function($, Sammy) {
+define(['jquery', 'sammy', 'knockout', './jquery.request'], function($, Sammy, ko) {
   var ddoc = '/conch/_design/conch';
   var root = '/conch/_design/conch/_rewrite';
 
