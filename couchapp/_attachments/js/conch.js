@@ -40,7 +40,7 @@ define(['jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTempla
         */
         room._id = ko.observable(room._id);
         room.members = ko.observableArray(room.members);
-        ko.applyBindings(room);
+        ko.applyBindings(room, main.$element().get(0));
         //main.swap('Connected: ' + JSON.stringify(body));
       })
     })
