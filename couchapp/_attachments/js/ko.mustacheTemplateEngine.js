@@ -1,12 +1,68 @@
-define(['knockout', 'vendor/mustache/requirejs.mustache', 'jquery', 'js/jquery.request'], function(ko, Mustache, jQuery) {
+define(['knockout', 'vendor/mustache/requirejs.mustache', 'jquery', 'js/jquery.request', 'sammy'], function(ko, Mustache, jQuery) {
+
+// TODO: Track templates that are in-flight so if another template request comes along, don't re-request
+// it or anything. Just hook into some kind of event when it becomes available.
+var storageTypes = ['local', 'session', 'data', 'memory'];
+storageTypes = ['data', 'memory']; // XXX development
+var templateCache = new Sammy.Store({name:'mustacheCache', type:storageTypes});
+
+//
+// Mustache binding instead of old and busted "template" binding.
+//
+
+ko.bindingHandlers.mustache = {};
+
+ko.bindingHandlers.mustache.init = function(element, valueAccessor, allBindingsAccessor, viewModel) {
+  // This will be called when the binding is first applied to an element
+  // Set up any initial state, event handlers, etc. here
+
+  // TODO: Maybe start fetching the template here?
+}
+
+ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBindingsAccessor, viewModel) {
+  // This will be called once when the binding is first applied to an element,
+  // and again whenever the associated observable changes value.
+  // Update the DOM element based on the supplied values here.
+  var bindingValue = ko.utils.unwrapObservable(valueAccessor());
+  var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name;
+  var templateData = bindingValue.data || viewModel;
+
+  var options = bindingValue.options || {};
+  options.templateEngine = new ko.mustacheTemplateEngine(); // Note, this is a new engine for every element udpate.
+
+  function render() {
+    // No foreach support yet.
+    ko.renderTemplate(templateName, templateData, options, element);
+  }
+
+  if(templateCache.exists(templateName)) {
+    render();
+  } else {
+    jQuery.request({uri:templateName}, function(er, resp, body) {
+      if(er) throw er;
+      if(resp.status >= 400)
+        throw new Error("No template found from server '" + templateName + "': " + resp.status + ' ' + body);
+      if(body.length == 0)
+        throw new Error("No template found from server: " + templateName);
+
+      // Store it and start the process.
+      templateCache.set(templateName, {source:body});
+      render();
+    })
+  }
+}
+
+//
+// Mustache template engine
+//
 
 ko.mustacheTemplateEngine = function () {
 
   function getTemplate(node_id) {
-    var node = document.getElementById(node_id);
-    if(!node)
+    var data = templateCache.get(node_id);
+    if(!data)
       throw new Error("Cannot find template with id: " + node_id);
-    return node;
+    return data;
   }
 
   // Some Javascript blocks are identified at template creation time (createJavaScriptEvaluatorBlock)
@@ -22,7 +78,7 @@ ko.mustacheTemplateEngine = function () {
     })
 
     //data._id = '<span data-bind="text: _id">x</span>';
-    var source = getTemplate(template).text;
+    var source = getTemplate(template).source;
     var html = Mustache.to_html(source, data);
 
     console.log('Final HTML: %o', html);
@@ -39,11 +95,10 @@ ko.mustacheTemplateEngine = function () {
   },
 
   this['rewriteTemplate'] = function (template, rewriterCallback) {
-    var templateNode = getTemplate(template);
-    var rewritten = rewriterCallback(templateNode.text);
+    var template = getTemplate(template);
+    var rewritten = rewriterCallback(template.source);
     
-    templateNode.text = rewritten;
-    templateNode.isRewritten = true;
+    templateCache.set(template, {source:rewritten, isRewritten:true});
   },
 
   this['createJavaScriptEvaluatorBlock'] = function (script) {
@@ -56,21 +111,12 @@ ko.mustacheTemplateEngine = function () {
     return '{{{' + id + '}}}';
   }
 
-  /*
-  this.addTemplate = function (templateName, templateMarkup) {
-    document.write("<script type='text/html' id='" + templateName + "'>" + templateMarkup + "</script>");
-  }
-
-  ko.exportProperty(this, 'addTemplate', this.addTemplate);
-  */
-};
+}; // ko.mustacheTemplateEngine
 
 ko.mustacheTemplateEngine.prototype = new ko.templateEngine();
 
 // Use this one by default
-ko.setTemplateEngine(new ko.mustacheTemplateEngine());
+//ko.setTemplateEngine(new ko.mustacheTemplateEngine());
 
 ko.exportSymbol('ko.mustacheTemplateEngine', ko.mustacheTemplateEngine);
-
-
 }); // define
