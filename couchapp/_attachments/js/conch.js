@@ -15,33 +15,22 @@ define(['jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTempla
     this.use(Sammy.Session);
     this.use(Sammy.Mustache, "html");
 
-    // implements a 'fade out'/'fade in'
     this.swap = function(content) {
       this.$element().hide().html(content).fadeIn('slow');
     }
 
     // Routes
     this.get('#/', function(ctx) {
-      //main.swap('Conch loaded. Entering room...');
+      // Set up the main UI template.
+      main.swap('<div data-bind="mustache: \'ddoc/stuff.html\'">Conch loaded. Entering room...</div>');
       req({uri:'ddoc/state.json'}, function(er, resp, room) {
         if(er) throw er;
 
-        /*
-        ctx.log("What's happening?");
-        var tmpl = 'ddoc/stuff.html';
-        false && ctx.load(tmpl, {foo: 23}, function() {
-          console.log("Got it once: %o", Array.prototype.slice.apply(arguments));
-        });
-        //main.swap('Choose: <select data-bind="options: members, optionsText: \'name\'"></select>');
-
-        c=ctx;
-        x = room;
-        //xr = room = ko.mapping.fromJS(room);
-        */
         room._id = ko.observable(room._id);
         room.members = ko.observableArray(room.members);
         ko.applyBindings(room, main.$element().get(0));
-        //main.swap('Connected: ' + JSON.stringify(body));
+
+        window.room = room; // debugging
       })
     })
   })
