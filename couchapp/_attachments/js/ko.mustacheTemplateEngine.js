@@ -94,11 +94,11 @@ ko.mustacheTemplateEngine = function () {
     return result;
   },
 
-  this['rewriteTemplate'] = function (template, rewriterCallback) {
-    var template = getTemplate(template);
+  this['rewriteTemplate'] = function (id, rewriterCallback) {
+    var template = getTemplate(id);
     var rewritten = rewriterCallback(template.source);
     
-    templateCache.set(template, {source:rewritten, isRewritten:true});
+    templateCache.set(id, {source:rewritten, isRewritten:true});
   },
 
   this['createJavaScriptEvaluatorBlock'] = function (script) {
