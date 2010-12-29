@@ -16,12 +16,7 @@
           <div id="main" class="yui-b">
             Loading Conch...
             id is <span data-bind="text: _id">simple</span>
-            <div data-bind="template: { name:'members', templateEngine:'mustacheTemplateEngine' }"></div>
-            <script type="text/html" id="members">
-              Members template is here: {{_id}}
-              <p>
-              id with binding: <span data-bind="text: _id"></span>
-            </script>
+            <div data-bind="mustache: { name:'ddoc/stuff.html' }"></div>
           </div>
         </div>
       </div>
