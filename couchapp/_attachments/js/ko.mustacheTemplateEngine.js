@@ -39,7 +39,6 @@ ko.mustacheTemplateEngine = function () {
   },
 
   this['rewriteTemplate'] = function (template, rewriterCallback) {
-    //debugger;
     var templateNode = getTemplate(template);
     var rewritten = rewriterCallback(templateNode.text);
     
@@ -55,13 +54,15 @@ ko.mustacheTemplateEngine = function () {
     var id = 'ko_block_' + Math.random().toString();
     ko_blocks[id] = evaluator;
     return '{{{' + id + '}}}';
-  },
+  }
 
+  /*
   this.addTemplate = function (templateName, templateMarkup) {
     document.write("<script type='text/html' id='" + templateName + "'>" + templateMarkup + "</script>");
   }
 
   ko.exportProperty(this, 'addTemplate', this.addTemplate);
+  */
 };
 
 ko.mustacheTemplateEngine.prototype = new ko.templateEngine();

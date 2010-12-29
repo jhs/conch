@@ -1,7 +1,7 @@
 // Main Conch application
 //
 
-define(['jquery', 'sammy', 'knockout', './jquery.request'], function($, Sammy, ko) {
+define(['jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTemplateEngine'], function($, Sammy, ko) {
   var ddoc = '/conch/_design/conch';
   var root = '/conch/_design/conch/_rewrite';
 
@@ -22,10 +22,26 @@ define(['jquery', 'sammy', 'knockout', './jquery.request'], function($, Sammy, k
 
     // Routes
     this.get('#/', function(ctx) {
-      main.swap('Conch loaded. Entering room...');
-      req({uri:'ddoc/state.json'}, function(er, resp, body) {
+      //main.swap('Conch loaded. Entering room...');
+      req({uri:'ddoc/state.json'}, function(er, resp, room) {
         if(er) throw er;
-        main.swap('Connected: ' + JSON.stringify(body));
+
+        /*
+        ctx.log("What's happening?");
+        var tmpl = 'ddoc/stuff.html';
+        false && ctx.load(tmpl, {foo: 23}, function() {
+          console.log("Got it once: %o", Array.prototype.slice.apply(arguments));
+        });
+        //main.swap('Choose: <select data-bind="options: members, optionsText: \'name\'"></select>');
+
+        c=ctx;
+        x = room;
+        //xr = room = ko.mapping.fromJS(room);
+        */
+        room._id = ko.observable(room._id);
+        room.members = ko.observableArray(room.members);
+        ko.applyBindings(room);
+        //main.swap('Connected: ' + JSON.stringify(body));
       })
     })
   })

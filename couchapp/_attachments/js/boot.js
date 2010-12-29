@@ -8,6 +8,7 @@ require( // Options
                     , jquery : "js/require_jquery"
                     , sammy  : "js/require_sammy"
                     , knockout: "js/require_knockout"
+                    , mustache: "vendor/mustache/requirejs.mustache"
                     }
          }
 
