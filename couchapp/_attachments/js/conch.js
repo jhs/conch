@@ -72,8 +72,26 @@ define(
           return "[Unknown]";
         }, room)
 
-        //ko.applyBindings(room, main.$element().parent().get(0));
-        ko.applyBindings(room);
+        room.buttons = ko.observableArray([]);
+        function add_button(button) {
+          _(button).each(function(val, key) {
+            if(_.isFunction(val))
+              button[key] = ko.dependentObservable(val, room);
+            else
+              button[key] = ko.observable(val);
+          })
+          room.buttons().push(button);
+        }
+
+        add_button({ label: 'Raise my hand'
+                   , type: 'raise'
+                   });
+
+        add_button({ label: 'Request interrupt'
+                   , type: 'interrupt'
+                   });
+
+        ko.applyBindings(room, main.$element().parent().get(0));
 
         // Debugging.
         window.room = room;

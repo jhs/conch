@@ -6,6 +6,11 @@ body {
   background-color: white;
 }
 
+#doc,
+#doc select, #doc input, #doc button, #doc textarea {
+  font-family: helvetica, 'trebuchet ms', sans-serif;
+}
+
 #doc #ft {
   margin-top: 0.2em;
 }
@@ -21,6 +26,14 @@ body {
   margin-left: 7.923em; /* 90px + 1em */
   border-left: 2px dashed #ccc;
   padding-left: 0.5em;
+}
+
+#doc #main {
+}
+
+/* Try to make the Mustache div wrappers no-op */
+#main div.mustache {
+  display: inline;
 }
 
 #main strong {
@@ -44,16 +57,20 @@ body {
   margin-top: 0;
 }
 
-#main .conch {
-  color: #008800;
+#main .actions button {
+  font-size: 150%;
+  padding: 0.75em 1em;
+  font-weight: bold;
+  border: 1px solid black;
+  margin-right: 1em;
 }
 
-#main .interrupt {
-  color: #880000;
+#main .actions button.hand-up {
+  background-color: #9999ff;
 }
 
-#main .hand-up {
-  color: #000088;
+#main .actions button.interrupt {
+  background-color: #ff9999;
 }
 
 #main table.members {
@@ -67,6 +84,18 @@ body {
 
 #main table.members tr.even {
   background: #eeeeee;
+}
+
+#main table.members tr.conch {
+  color: #008800;
+}
+
+#main table.members tr.interrupt {
+  color: #880000;
+}
+
+#main table.members tr.hand-up {
+  color: #000088;
 }
 
 #main table.members td {
