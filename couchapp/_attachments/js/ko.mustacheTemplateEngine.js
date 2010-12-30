@@ -35,7 +35,6 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
   // and again whenever the associated observable changes value.
   // Update the DOM element based on the supplied values here.
   var bindingValue = ko.utils.unwrapObservable(valueAccessor());
-  var templateData = bindingValue.data || viewModel;
 
   var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name;
   if(!templateName && bindingValue.inside) {
@@ -55,8 +54,20 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
   options.templateEngine = new ko.mustacheTemplateEngine(); // Note, this is a new engine for every element udpate.
 
   function render() {
-    // No foreach support yet.
-    ko.renderTemplate(templateName, templateData, options, element);
+    var templateData;
+    if(typeof bindingValue.foreach === 'undefined') {
+      // Render the data in one big blob.
+      templateData = bindingValue.data || viewModel;
+      ko.renderTemplate(templateName, templateData, options, element);
+    } else {
+      // Render once for each data point.
+      // TODO: Check if the use_once templates get purged after the first iteration.
+      templateData = bindingValue.foreach || [];
+      options.afterAdd = bindingValue.afterAdd;
+      options.beforeRemove = bindingValue.beforeRemove;
+      options.includeDestroyed = bindingValue.includeDestroyed;
+      ko.renderTemplateForEach(templateName, templateData, options, element);
+    }
   }
 
   if(templateCache.exists(templateName)) {
