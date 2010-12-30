@@ -44,14 +44,40 @@ body {
   margin-top: 0;
 }
 
-#main dl.person {
-  margin-top: 1em;
+#main .conch {
+  color: #008800;
 }
 
-#main dl.person dt {
-  float: left;
-  clear: left;
-  width: 8em;
-  margin-right: 1em;
+#main .interrupt {
+  color: #880000;
+}
+
+#main .hand-up {
+  color: #000088;
+}
+
+#main table.members {
+  margin-top: 1em;
+  font-size: 150%;
+}
+
+#main table.members tr.odd {
+  /* Implicit background: #ffffff */
+}
+
+#main table.members tr.even {
+  background: #eeeeee;
+}
+
+#main table.members td {
+  padding: 0.2em;
+}
+
+#main table.members td.name {
+  padding-right: 1em;
+  border-right: 2px solid black;
+}
+
+#main table.members td.state {
   font-weight: bold;
 }

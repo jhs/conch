@@ -15,6 +15,12 @@ define(
 
   var req = $.request.couch;
 
+  // Minor helpers
+  function capitalize(str) {
+    str = str || "";
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   var initial = $('#main').html();
   var main = $.sammy('#main', function() {
     this.use(Sammy.Session);
@@ -32,6 +38,26 @@ define(
 
         room._id = ko.observable(room._id);
         room.members = ko.observableArray(room.members);
+        _(room.members()).each(function(member) {
+          member.state = ko.observable(member.state || null);
+          member.human_state = ko.dependentObservable(function() {
+            return capitalize(member.state());
+          })
+        })
+
+        // An alternating background for the template.
+        ;(function() {
+          var a = -1
+            , classes = ['odd', 'even'];
+
+          room.toggle = function() {
+            a += 1;
+            if(a >= classes.length)
+              a = 0;
+            return classes[a];
+          }
+        })();
+
         room.members()[0].name = ko.observable(room.members()[0].name);
 
         room.name = ko.dependentObservable(function() {
@@ -41,7 +67,7 @@ define(
 
         room.conch_guy = ko.dependentObservable(function() {
           for(var a = 0; a < this.members().length; a++)
-            if(this.members()[a].state == 'conch')
+            if(this.members()[a].state() == 'conch')
               return this.members()[a].name();
           return "[Unknown]";
         }, room)
