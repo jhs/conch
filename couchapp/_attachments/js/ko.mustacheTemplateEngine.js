@@ -5,6 +5,11 @@ define(
 
 , function(_, ko, Mustache, jQuery) {
 
+if(!window.console) {
+  var console = {};
+  console.log = console.debug = console.warn = console.error = console.fatal = function() {};
+}
+
 // TODO: Track templates that are in-flight so if another template request comes along, don't re-request
 // it or anything. Just hook into some kind of event when it becomes available.
 var storageTypes = ['local', 'session', 'data', 'memory'];
