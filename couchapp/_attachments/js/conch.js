@@ -32,6 +32,7 @@ define(
 
         room._id = ko.observable(room._id);
         room.members = ko.observableArray(room.members);
+        room.members()[0].name = ko.observable(room.members()[0].name);
 
         room.name = ko.dependentObservable(function() {
           var id = room._id();
@@ -41,12 +42,16 @@ define(
         room.conch_guy = ko.dependentObservable(function() {
           for(var a = 0; a < this.members().length; a++)
             if(this.members()[a].state == 'conch')
-              return this.members()[a].name;
+              return this.members()[a].name();
           return "[Unknown]";
         }, room)
 
-        ko.applyBindings(room, main.$element().get(0));
-        window.room = room; // debugging
+        //ko.applyBindings(room, main.$element().parent().get(0));
+        ko.applyBindings(room);
+
+        // Debugging.
+        window.room = room;
+        window.main = main;
       })
     })
   })
