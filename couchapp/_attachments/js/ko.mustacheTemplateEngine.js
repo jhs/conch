@@ -124,7 +124,12 @@ ko.mustacheTemplateEngine = function () {
 
   this['createJavaScriptEvaluatorBlock'] = function (script) {
     // Mustache will pass the template context (the viewModel, or what Mustache calls the view) as `this`.
-    var evaluator = new Function('with(this) { return (' + script + '); }');
+    try {
+      var evaluator = new Function('with(this) { return (' + script + '); }');
+    } catch(e) {
+      e.message += '; possibly syntax error in mustache-bound element';
+      throw e;
+    }
 
     // Use a random template tag to execute the code at render time.
     var id = 'ko_block_' + Math.random().toString();
