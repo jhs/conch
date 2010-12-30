@@ -5,13 +5,4 @@
 {{! Cons: Verbose; harder to read and perhaps debug. }}
 <h1><span data-bind="text: name"/>: <span data-bind="text: conch_guy"/> has the conch.</h1>
 
-<table class="members">
-  <tbody>
-    {{#members}}
-      <tr class="{{toggle}} {{state}}">
-        <td class="name">{{name}}</td>
-        <td class="state">{{human_state}}</td>
-      </tr>
-    {{/members}}
-  </tbody>
-</table>
+<div data-bind="mustache: 'ddoc/templates/members.html'"></div>
