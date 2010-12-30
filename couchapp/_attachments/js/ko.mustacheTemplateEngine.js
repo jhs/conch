@@ -121,7 +121,7 @@ ko.mustacheTemplateEngine = function () {
       templateCache.clear(template_id);
 
     // The caller needs an array of actual DOM nodes.
-    return jQuery('<div>' + html + '</div>');
+    return jQuery('<div class="mustache">' + html + '</div>');
   },
 
   this['isTemplateRewritten'] = function (template) {
