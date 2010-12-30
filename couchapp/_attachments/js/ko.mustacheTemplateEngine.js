@@ -5,8 +5,9 @@ define(
 
 , function(_, ko, Mustache, jQuery) {
 
-if(!window.console) {
-  var console = {};
+var console = window.console;
+if(!console) {
+  console = {};
   console.log = console.debug = console.warn = console.error = console.fatal = function() {};
 }
 
