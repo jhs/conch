@@ -29,8 +29,21 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
   // and again whenever the associated observable changes value.
   // Update the DOM element based on the supplied values here.
   var bindingValue = ko.utils.unwrapObservable(valueAccessor());
-  var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name;
   var templateData = bindingValue.data || viewModel;
+
+  var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name;
+  if(!templateName && bindingValue.inside) {
+    // Use the template from inside the element. This is not very helpful yet because
+    // You can't embed a template inside a template because Mustache will simply process the
+    // entire file the first time.
+    var elem = jQuery(element);
+
+    // The template cache is inappropriate however it's already working so use it.
+    // To avoid leaking memory, indicate that the template should be deleted when done.
+    templateName = Math.random().toString();
+    templateCache.set(templateName, {source:elem.html(), use_once:true} );
+    elem.html('');
+  }
 
   var options = bindingValue.options || {};
   options.templateEngine = new ko.mustacheTemplateEngine(); // Note, this is a new engine for every element udpate.
@@ -74,19 +87,21 @@ ko.mustacheTemplateEngine = function () {
   // but must run at render-time.
   var ko_blocks = {};
 
-  this['renderTemplate'] = function (template, data, options) {
-    console.log("MUSTACHE renderTemplate:\n%o", {template:template, data:data, options:options});
+  this['renderTemplate'] = function (template_id, data, options) {
+    //console.log("MUSTACHE renderTemplate:\n%o", {template_id:template_id, data:data, options:options});
 
     // Manually insert the Javascript blocks to be evaluated.
     _(ko_blocks).each(function(code, tag_id) {
       data[tag_id] = code;
     })
 
-    //data._id = '<span data-bind="text: _id">x</span>';
-    var source = getTemplate(template).source;
-    var html = Mustache.to_html(source, data);
+    var template = getTemplate(template_id);
+    var html = Mustache.to_html(template.source, data);
 
-    console.log('Final HTML: %o', html);
+    console.debug('Final HTML: %o', html);
+
+    if(template.use_once)
+      templateCache.clear(template_id);
 
     // The caller needs an array of actual DOM nodes.
     return jQuery('<div>' + html + '</div>');
@@ -101,9 +116,10 @@ ko.mustacheTemplateEngine = function () {
 
   this['rewriteTemplate'] = function (id, rewriterCallback) {
     var template = getTemplate(id);
-    var rewritten = rewriterCallback(template.source);
-    
-    templateCache.set(id, {source:rewritten, isRewritten:true});
+    template.source = rewriterCallback(template.source);
+    template.isRewritten = true;
+
+    templateCache.set(id, template);
   },
 
   this['createJavaScriptEvaluatorBlock'] = function (script) {
