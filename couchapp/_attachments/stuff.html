@@ -1,4 +1,7 @@
-<h1>{{name}}: {{conch_guy}} has the conch.</h1>
+{{! Example of using data binding instead of Mustache substitution.}}
+{{! Pros: The whole template does not re-render when the data changes, only the one DOM element. }}
+{{! Cons: Verbose; harder to read and perhaps debug. }}
+<h1><span data-bind="text: name"/>: <span data-bind="text: conch_guy"/> has the conch.</h1>
 
 <ul>
 {{#members}}
