@@ -27,8 +27,20 @@ define(['jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTempla
 
         room._id = ko.observable(room._id);
         room.members = ko.observableArray(room.members);
-        ko.applyBindings(room, main.$element().get(0));
 
+        room.name = ko.dependentObservable(function() {
+          var id = room._id();
+          return id.charAt(0).toUpperCase() + id.slice(1);
+        })
+
+        room.conch_guy = ko.dependentObservable(function() {
+          for(var a = 0; a < this.members().length; a++)
+            if(this.members()[a].state == 'conch')
+              return this.members()[a].name;
+          return "[Unknown]";
+        }, room)
+
+        ko.applyBindings(room, main.$element().get(0));
         window.room = room; // debugging
       })
     })
