@@ -78,8 +78,8 @@ ko.mustacheTemplateEngine = function () {
     console.log("MUSTACHE renderTemplate:\n%o", {template:template, data:data, options:options});
 
     // Manually insert the Javascript blocks to be evaluated.
-    Object.keys(ko_blocks).forEach(function(id) {
-      data[id] = ko_blocks[id];
+    _(ko_blocks).each(function(code, tag_id) {
+      data[tag_id] = code;
     })
 
     //data._id = '<span data-bind="text: _id">x</span>';
