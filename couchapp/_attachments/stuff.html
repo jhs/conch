@@ -3,7 +3,14 @@
 {{!       For example, real-time value binding ("afterkeydown") is impossible if you have to render }}
 {{!       a template from scratch every time the user presses a key. }}
 {{! Cons: Verbose; harder to read and perhaps debug. }}
-<h1><span data-bind="text: name"/>: <span data-bind="text: conch_guy"/> has the conch.</h1>
+<h1 class="status"><span data-bind="text: name"/>: <span data-bind="text: conch_guy"/> has the conch.</h1>
+
+<div class="me" data-bind=" text: my_activity.label()
+                          , css: { normal   : my_activity.type() == 'normal'
+                                 , 'hand-up': my_activity.type() == 'hand-up'
+                                 , interrupt: my_activity.type() == 'interrupt'
+                                 }
+                          "></div>
 
 <div class="actions"
      data-bind="mustache: { name: 'ddoc/templates/button.html'

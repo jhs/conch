@@ -40,10 +40,9 @@ body {
   font-weight: bold;
 }
 
-#main h1 {
+#main h1.status {
   font-weight: bold;
   font-size: 150%;
-  margin-bottom: 0.25em;
 }
 
 #main h2 {
@@ -55,6 +54,13 @@ body {
 
 #main h2.first {
   margin-top: 0;
+}
+
+#main .me {
+  font-weight: bold;
+  font-size: 140%;
+  color: #555555;
+  margin: 0.5em 0;
 }
 
 #main .actions button {

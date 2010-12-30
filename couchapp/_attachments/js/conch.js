@@ -91,6 +91,16 @@ define(
                    , type: 'interrupt'
                    });
 
+        room.my_activity =
+          { type: ko.dependentObservable(function() {
+                    // TODO
+                    return 'normal';
+                  }, room)
+          , label: ko.dependentObservable(function() {
+                   return 'I am listening politely.';
+                   }, room)
+          };
+
         ko.applyBindings(room, main.$element().parent().get(0));
 
         // Debugging.
