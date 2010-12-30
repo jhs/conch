@@ -1,4 +1,9 @@
-define(['knockout', 'vendor/mustache/requirejs.mustache', 'jquery', 'js/jquery.request', 'sammy'], function(ko, Mustache, jQuery) {
+define(
+
+// Requirements
+['underscore', 'knockout', 'vendor/mustache/requirejs.mustache', 'jquery', 'js/jquery.request', 'sammy']
+
+, function(_, ko, Mustache, jQuery) {
 
 // TODO: Track templates that are in-flight so if another template request comes along, don't re-request
 // it or anything. Just hook into some kind of event when it becomes available.

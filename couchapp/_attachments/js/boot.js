@@ -15,6 +15,7 @@ require( // Options
                     , jquery    : "js/require/jquery"
                     , sammy     : "js/require/sammy"
                     , knockout  : "js/require/knockout"
+                    , underscore: "js/require/underscore"
                     }
          }
 

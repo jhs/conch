@@ -1,7 +1,12 @@
 // Main Conch application
 //
 
-define(['jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTemplateEngine'], function($, Sammy, ko) {
+define(
+
+// Requirements
+['underscore', 'jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTemplateEngine']
+
+, function(_, $, Sammy, ko) {
   var ddoc = '/conch/_design/conch';
   var root = '/conch/_design/conch/_rewrite';
 
