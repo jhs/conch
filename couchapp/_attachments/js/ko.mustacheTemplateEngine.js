@@ -121,10 +121,11 @@ ko.mustacheTemplateEngine = function () {
     var template = getTemplate(template_id);
     var html = Mustache.to_html(template.source, data);
 
-    console.debug('Final HTML: %o', html);
-
     // The caller needs an array of actual DOM nodes.
-    return jQuery('<div class="mustache">' + html + '</div>');
+    var result = jQuery('<div class="mustache">' + html + '</div>');
+    console.debug('Final HTML: %o', result.html());
+
+    return result;
   },
 
   this['isTemplateRewritten'] = function (template) {
