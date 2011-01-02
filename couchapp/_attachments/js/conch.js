@@ -29,13 +29,25 @@ define(
       this.$element().hide().html(content).fadeIn('slow');
     }
 
+    var room = null // The primary state of the application
+      , me = null   // Shortcut to my own part of the state
+      ;
+
+    this.get('#/raise', function(ctx) {
+      if(!me)
+        ctx.redirect('#/');
+
+      me.state('hand-up');
+    }) // get #/raise
+
     // Routes
     this.get('#/', function(ctx) {
       // Set up the main UI template.
       main.swap('<div data-bind="mustache: \'ddoc/stuff.html\'">Conch loaded. Entering room...</div>');
-      req({uri:'ddoc/state.json'}, function(er, resp, room) {
+      req({uri:'ddoc/state.json'}, function(er, resp, body) {
         if(er) throw er;
 
+        room = body;
         room._id = ko.observable(room._id);
 
         // An alternating background for the template.
@@ -51,7 +63,6 @@ define(
           }
         })();
 
-        var me = null; // Shortcut to my own member representing me.
         var observable_member = function(member) {
           member.name = ko.observable(member.name || null);
           member.state = ko.observable(member.state || null);
@@ -62,20 +73,23 @@ define(
 
           if(!me) {
             // Trying to find myself.
-            if(member.name() == 'Jason') // XXX
+            if(member.name() == 'Jason') { // XXX
               me = member;
+            }
           }
+
+          return member;
         }
 
         room.members = ko.observableArray(room.members);
+        _(room.members()).each(function(member) { observable_member(member); })
 
         if(!me) {
           // Create myself as the latest member.
           me = {name: 'Jason'};
-          room.members.push(me);
+          room.members().push(observable_member(me));
         }
 
-        _(room.members()).each(function(member) { observable_member(member); })
 
         room.name = ko.dependentObservable(function() {
           var id = room._id();
@@ -135,8 +149,9 @@ define(
         // Debugging.
         window.room = room;
         window.main = main;
+        window.me = me;
       })
-    })
+    }) // get #/
   })
 
   var started = false;
