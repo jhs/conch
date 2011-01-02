@@ -35,6 +35,7 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
   // and again whenever the associated observable changes value.
   // Update the DOM element based on the supplied values here.
   var bindingValue = ko.utils.unwrapObservable(valueAccessor());
+  var use_once = false;
 
   var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name;
   if(!templateName && bindingValue.inside) {
@@ -45,8 +46,9 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
 
     // The template cache is inappropriate however it's already working so use it.
     // To avoid leaking memory, indicate that the template should be deleted when done.
+    use_once = true;
     templateName = Math.random().toString();
-    templateCache.set(templateName, {source:elem.html(), use_once:true} );
+    templateCache.set(templateName, {source:elem.html(), use_once:use_once} );
     elem.html('');
   }
 
@@ -68,6 +70,10 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
       options.includeDestroyed = bindingValue.includeDestroyed;
       ko.renderTemplateForEach(templateName, templateData, options, element);
     }
+
+    // Clear the template from the cache if needed.
+    if(use_once)
+      templateCache.clear(templateName);
   }
 
   if(templateCache.exists(templateName)) {
@@ -116,9 +122,6 @@ ko.mustacheTemplateEngine = function () {
     var html = Mustache.to_html(template.source, data);
 
     console.debug('Final HTML: %o', html);
-
-    if(template.use_once)
-      templateCache.clear(template_id);
 
     // The caller needs an array of actual DOM nodes.
     return jQuery('<div class="mustache">' + html + '</div>');
