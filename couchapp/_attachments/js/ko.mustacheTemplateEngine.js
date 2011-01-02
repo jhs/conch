@@ -121,8 +121,11 @@ ko.mustacheTemplateEngine = function () {
     var template = getTemplate(template_id);
     var html = Mustache.to_html(template.source, data);
 
+    // Keeping this in case I need it; still can't figure out how to return any and all possible responses.
+    //var wrapped = jQuery('<div class="mustache">' + html + '</div>');
+
     // The caller needs an array of actual DOM nodes.
-    var result = jQuery('<div class="mustache">' + html + '</div>');
+    var result = jQuery(html);
     console.debug('Final HTML: %o', result.html());
 
     return result;
