@@ -78,7 +78,7 @@ define(
         function add_button(button) {
           _(button).each(function(val, key) {
             if(_.isFunction(val))
-              button[key] = ko.dependentObservable(val, room);
+              button[key] = (key === 'onClick') ? val : ko.dependentObservable(val, button);
             else
               button[key] = ko.observable(val);
           })
