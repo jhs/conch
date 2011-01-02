@@ -87,10 +87,16 @@ define(
 
         add_button({ label: 'Raise my hand'
                    , type: 'raise'
+                   , onClick: function() {
+                       ctx.redirect('#/raise');
+                     }
                    });
 
         add_button({ label: 'Request interrupt'
                    , type: 'interrupt'
+                   , onClick: function() {
+                       ctx.redirect('#/interrupt');
+                     }
                    });
 
         room.my_activity =
