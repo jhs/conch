@@ -37,7 +37,7 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
   var bindingValue = ko.utils.unwrapObservable(valueAccessor());
   var use_once = false;
 
-  var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name;
+  var templateName = typeof bindingValue === 'string' ? bindingValue : bindingValue.name || bindingValue.partial;
   if(!templateName && bindingValue.inside) {
     // Use the template from inside the element. This is not very helpful yet because
     // You can't embed a template inside a template because Mustache will simply process the
@@ -56,7 +56,16 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
   options.templateEngine = new ko.mustacheTemplateEngine(); // Note, this is a new engine for every element udpate.
 
   function render() {
-    var templateData;
+    var templateData = bindingValue.data || viewModel;
+    var partialName = templateName.replace(/^.*\/|\.[^.]*$/g, '');
+    var partialContext = templateData[partialName];
+    if(bindingValue.partial) {
+      // Special treatment for partial templates.
+      if(typeof partialContext === 'object')
+        // Partial gets its context namespaced from the parent.
+        templateData = partialContext;
+    }
+
     if(typeof bindingValue.foreach === 'undefined') {
       // Render the data in one big blob.
       templateData = bindingValue.data || viewModel;
@@ -64,11 +73,11 @@ ko.bindingHandlers.mustache.update = function(element, valueAccessor, allBinding
     } else {
       // Render once for each data point.
       // TODO: Check if the use_once templates get purged after the first iteration.
-      templateData = bindingValue.foreach || [];
+      var items = bindingValue.foreach || [];
       options.afterAdd = bindingValue.afterAdd;
       options.beforeRemove = bindingValue.beforeRemove;
       options.includeDestroyed = bindingValue.includeDestroyed;
-      ko.renderTemplateForEach(templateName, templateData, options, element);
+      ko.renderTemplateForEach(templateName, items, options, element);
     }
 
     // Clear the template from the cache if needed.
