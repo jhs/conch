@@ -51,16 +51,31 @@ define(
           }
         })();
 
-        room.members = ko.observableArray(room.members);
-        _(room.members()).each(function(member) {
+        var me = null; // Shortcut to my own member representing me.
+        var observable_member = function(member) {
+          member.name = ko.observable(member.name || null);
           member.state = ko.observable(member.state || null);
-          member.toggle = room.toggle;
+          member.toggle = room.toggle; // For the partial
           member.human_state = ko.dependentObservable(function() {
             return capitalize(member.state());
           })
-        })
 
-        room.members()[0].name = ko.observable(room.members()[0].name);
+          if(!me) {
+            // Trying to find myself.
+            if(member.name() == 'Jason') // XXX
+              me = member;
+          }
+        }
+
+        room.members = ko.observableArray(room.members);
+
+        if(!me) {
+          // Create myself as the latest member.
+          me = {name: 'Jason'};
+          room.members.push(me);
+        }
+
+        _(room.members()).each(function(member) { observable_member(member); })
 
         room.name = ko.dependentObservable(function() {
           var id = room._id();
@@ -90,6 +105,9 @@ define(
                    , onClick: function() {
                        ctx.redirect('#/raise');
                      }
+                   ,  is_enabled: function() {
+                        return me.state() !== 'hand-up' && me.state() !== 'interrupt'
+                      }
                    });
 
         add_button({ label: 'Request interrupt'
@@ -97,6 +115,9 @@ define(
                    , onClick: function() {
                        ctx.redirect('#/interrupt');
                      }
+                   ,  is_enabled: function() {
+                        return me.state() !== 'hand-up' && me.state() !== 'interrupt'
+                      }
                    });
 
         room.my_activity =
