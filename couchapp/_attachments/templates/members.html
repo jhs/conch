@@ -1,10 +1,4 @@
 <table class="members">
-  <tbody>
-    {{#members}}
-      <tr class="{{toggle}} {{state}}">
-        <td class="name">{{name}}</td>
-        <td class="state">{{human_state}}</td>
-      </tr>
-    {{/members}}
+  <tbody data-bind="mustache: { partial: 'ddoc/templates/member.html', foreach: members }">
   </tbody>
 </table>

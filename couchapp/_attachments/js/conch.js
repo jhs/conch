@@ -37,13 +37,6 @@ define(
         if(er) throw er;
 
         room._id = ko.observable(room._id);
-        room.members = ko.observableArray(room.members);
-        _(room.members()).each(function(member) {
-          member.state = ko.observable(member.state || null);
-          member.human_state = ko.dependentObservable(function() {
-            return capitalize(member.state());
-          })
-        })
 
         // An alternating background for the template.
         ;(function() {
@@ -57,6 +50,15 @@ define(
             return classes[a];
           }
         })();
+
+        room.members = ko.observableArray(room.members);
+        _(room.members()).each(function(member) {
+          member.state = ko.observable(member.state || null);
+          member.toggle = room.toggle;
+          member.human_state = ko.dependentObservable(function() {
+            return capitalize(member.state());
+          })
+        })
 
         room.members()[0].name = ko.observable(room.members()[0].name);
 
