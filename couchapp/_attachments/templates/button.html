@@ -1,7 +1,7 @@
 <button data-bind=" text: label
                   , click: onClick
                   , enable: is_enabled
-                  , css: { 'hand-up': type() == 'raise'
-                         , interrupt: type() == 'interrupt'
+                  , css: { 'hand-up': name == 'raise'
+                         , interrupt: name == 'interrupt'
                          }
                   "></button>

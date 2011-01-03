@@ -4,22 +4,13 @@
 define(
 
 // Requirements
-['underscore', 'jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTemplateEngine']
+['./conch/models', 'underscore', 'jquery', 'sammy', 'knockout', './jquery.request', 'js/ko.mustacheTemplateEngine']
 
-, function(_, $, Sammy, ko) {
-  var ddoc = '/conch/_design/conch';
-  var root = '/conch/_design/conch/_rewrite';
-
+, function(models, _, $, Sammy, ko) {
   // No jQuery.couch yet.
   //$.couch.urlPrefix = root + '/db';
 
   var req = $.request.couch;
-
-  // Minor helpers
-  function capitalize(str) {
-    str = str || "";
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
 
   var initial = $('#main').html();
   var main = $.sammy('#main', function() {
@@ -29,15 +20,13 @@ define(
       this.$element().hide().html(content).fadeIn('slow');
     }
 
-    var room = null // The primary state of the application
-      , me = null   // Shortcut to my own part of the state
-      ;
+    var room = null; // The primary state of the application
 
     this.get('#/raise', function(ctx) {
-      if(!me)
+      if(!room || !room.me)
         ctx.redirect('#/');
 
-      me.state('hand-up');
+      room.me.state('hand-up');
     }) // get #/raise
 
     // Routes
@@ -47,113 +36,32 @@ define(
       req({uri:'ddoc/state.json'}, function(er, resp, body) {
         if(er) throw er;
 
-        room = body;
-        room._id = ko.observable(room._id);
+        room = new models.Room(body);
+        room.me = room.member_by_name('Jason');
+        if(!room.me) {
+          console.log("Need to create myself");
+          room.me = new models.Member({name:"Jason"});
+          room.join(room.me);
+        }
+        room.me.is_me(true);
 
-        // An alternating background for the template.
-        ;(function() {
-          var a = -1
-            , classes = ['odd', 'even'];
-
-          room.toggle = function() {
-            a += 1;
-            if(a >= classes.length)
-              a = 0;
-            return classes[a];
-          }
-        })();
-
-        var observable_member = function(member) {
-          member.name = ko.observable(member.name || null);
-          member.state = ko.observable(member.state || null);
-          member.toggle = room.toggle; // For the partial
-          member.human_state = ko.dependentObservable(function() {
-            return capitalize(member.state());
-          })
-
-          if(!me) {
-            // Trying to find myself.
-            if(member.name() == 'Jason') { // XXX
-              me = member;
-            }
-          }
-
-          return member; // Note, member is mutated already, just returning for covenience.
+        room.me.buttons.by_name['raise'].onClick = function() {
+          var target = room.me.state() === 'hand-up' ? '#/' : '#/raise';
+          ctx.redirect(target);
         }
 
-        room.members = ko.observableArray(room.members);
-        _(room.members()).each(function(member) { observable_member(member); })
-
-        if(!me) {
-          // Create myself as the latest member.
-          me = {name: 'Jason'};
-          room.members().push(observable_member(me));
+        room.me.buttons.by_name['interrupt'].onClick = function() {
+          var target = room.me.state() == 'interrupt' ? '#/' : '#/interrupt';
+          ctx.redirect(target);
         }
-
-
-        room.name = ko.dependentObservable(function() {
-          var id = room._id();
-          return id.charAt(0).toUpperCase() + id.slice(1);
-        })
-
-        room.conch_guy = ko.dependentObservable(function() {
-          for(var a = 0; a < this.members().length; a++)
-            if(this.members()[a].state() == 'conch')
-              return this.members()[a].name();
-          return "[Unknown]";
-        }, room)
-
-        room.buttons = ko.observableArray([]);
-        function add_button(button) {
-          _(button).each(function(val, key) {
-            if(_.isFunction(val))
-              button[key] = (key === 'onClick') ? val : ko.dependentObservable(val, button);
-            else
-              button[key] = ko.observable(val);
-          })
-          room.buttons().push(button);
-        }
-
-        add_button({ label: function() {
-                              return me.state() == 'hand-up' ? 'Lower my hand' : 'Raise my hand';
-                            }
-                   , type: 'raise'
-                   , onClick: function() {
-                       ctx.redirect(me.state() !== 'hand-up' ? '#/raise' : '#/');
-                     }
-                   ,  is_enabled: function() {
-                        return me.state() !== 'interrupt'
-                      }
-                   });
-
-        add_button({ label: function() {
-                              return me.state() == 'interrupt' ? 'Cancel interrupt' : 'Request interrupt';
-                            }
-                   , type: 'interrupt'
-                   , onClick: function() {
-                       ctx.redirect('#/interrupt');
-                     }
-                   ,  is_enabled: function() {
-                        return me.state() !== 'interrupt'
-                      }
-                   });
-
-        room.my_activity =
-          { type: ko.dependentObservable(function() {
-                    // TODO
-                    return 'normal';
-                  }, room)
-          , label: ko.dependentObservable(function() {
-                   return 'I am listening politely.';
-                   }, room)
-          };
 
         ko.applyBindings(room, main.$element().parent().get(0));
 
         // Debugging.
+        window.body = JSON.parse(JSON.stringify(body));
         window.room = room;
         window.main = main;
-        window.me = me;
+        window._ = _;
       })
     }) // get #/
   })
