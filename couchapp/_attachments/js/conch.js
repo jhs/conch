@@ -78,7 +78,7 @@ define(
             }
           }
 
-          return member;
+          return member; // Note, member is mutated already, just returning for covenience.
         }
 
         room.members = ko.observableArray(room.members);
@@ -114,23 +114,27 @@ define(
           room.buttons().push(button);
         }
 
-        add_button({ label: 'Raise my hand'
+        add_button({ label: function() {
+                              return me.state() == 'hand-up' ? 'Lower my hand' : 'Raise my hand';
+                            }
                    , type: 'raise'
                    , onClick: function() {
-                       ctx.redirect('#/raise');
+                       ctx.redirect(me.state() !== 'hand-up' ? '#/raise' : '#/');
                      }
                    ,  is_enabled: function() {
-                        return me.state() !== 'hand-up' && me.state() !== 'interrupt'
+                        return me.state() !== 'interrupt'
                       }
                    });
 
-        add_button({ label: 'Request interrupt'
+        add_button({ label: function() {
+                              return me.state() == 'interrupt' ? 'Cancel interrupt' : 'Request interrupt';
+                            }
                    , type: 'interrupt'
                    , onClick: function() {
                        ctx.redirect('#/interrupt');
                      }
                    ,  is_enabled: function() {
-                        return me.state() !== 'hand-up' && me.state() !== 'interrupt'
+                        return me.state() !== 'interrupt'
                       }
                    });
 
